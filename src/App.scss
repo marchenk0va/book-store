@@ -1,0 +1,41 @@
+* {
+    font-family: 'Roboto Mono', monospace;
+    box-sizing: border-box;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 20px;
+
+    &-link {
+        text-decoration: none;
+        color: #000;
+    }
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.cart {
+    &-item {
+        &-container {
+            padding: 10px;
+            border: 1px solid #efefef;
+        }
+
+        &-cover {
+            width: 90px;
+            height: 120px;
+        }
+    }
+}
