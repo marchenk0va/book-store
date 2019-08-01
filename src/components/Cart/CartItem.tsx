@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../App.scss';
 import { connect } from 'react-redux';
-import { CartItemProps } from './module';
+import { CartItemProps } from './modules/CartItem.module';
 
-const CartItem = (props: CartItemProps): JSX.Element => {
+const CartItem: React.FC<CartItemProps> = (props) => {
     return (
         <div className='cart-item-container flex-row'>
             <div className='flex-row' style={{marginRight: '40px'}}>

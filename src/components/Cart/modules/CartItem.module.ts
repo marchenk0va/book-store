@@ -4,8 +4,3 @@ export type CartItemProps = {
     cost: number,
     cover: string,
 }
-
-export type CartListProps = {
-    items: any,
-    id: any,
-}

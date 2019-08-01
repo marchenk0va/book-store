@@ -4,11 +4,21 @@ import { connect } from 'react-redux';
 
 import { books } from '../../data/data';
 import { IBooks } from '../../data/data';
-import { CartListProps } from './module';
+import { CartListProps } from './modules/CartList.module';
 import CartItem from './CartItem';
 
-const CartList = (props: CartListProps): JSX.Element => {
-    const addedItems = getAddedItems();
+const CartList: React.FC<CartListProps> = (props) => {
+    const addedItems = getAddedItems().map((item: IBooks): JSX.Element => {
+        return (
+            <CartItem 
+                key={item.id}
+                title={item.title}
+                rating={item.rating}
+                cost={item.cost}
+                cover={item.cover}
+            />
+        )
+    });
 
     function getAddedItems() {
         let added: any = [];
@@ -23,19 +33,7 @@ const CartList = (props: CartListProps): JSX.Element => {
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', width: '40%',margin: '0px', padding: '5px'}}>
-            {
-                addedItems.map((item: IBooks): JSX.Element => {
-                    return (
-                        <CartItem 
-                            key={item.id}
-                            title={item.title}
-                            rating={item.rating}
-                            cost={item.cost}
-                            cover={item.cover}
-                        />
-                    )
-                })
-            }
+            {addedItems}
         </div>
     )
 }

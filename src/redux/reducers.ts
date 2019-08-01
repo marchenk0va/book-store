@@ -1,17 +1,18 @@
 import { actionTypes } from './actions';
-import { initState, CartAction } from './module';
+import { ICartState } from './modules/reducers.module';
+import { ICartAction } from './modules/actions.module';
 
-const initialState: initState = {
+const initialState: ICartState = {
     items: [],
     totalQuantity: 0,
     quantityById: {}
 }
 
-export const itemActions = (state = initialState, action: CartAction): any => {
+export const itemActions = (state = initialState, action: ICartAction): ICartState => {
     switch (action.type) {
         case actionTypes.ADD_ITEM:
             return {
-                ...state.items,
+                ...state,
                 items: [ ...state.items, action.id ],
                 totalQuantity: ++state.totalQuantity
             }
@@ -20,7 +21,7 @@ export const itemActions = (state = initialState, action: CartAction): any => {
     }
 }
 
-export const quantityById = (state = initialState.quantityById, action: any) => {
+export const quantityById = (state = initialState.quantityById, action: ICartAction) => {
     switch (action.type) {
         case actionTypes.ADD_ITEM:
             return {
@@ -32,4 +33,4 @@ export const quantityById = (state = initialState.quantityById, action: any) => 
     }
 }
 
-export const getQuantityOfItem = (state: any, id: any) => state.quantityById[id] || 0
+export const getQuantityOfItem = (state: ICartState, id: string) => state.quantityById[id] || 0

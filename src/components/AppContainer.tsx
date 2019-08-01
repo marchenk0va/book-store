@@ -5,14 +5,16 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navigation from './Navigation';
 import ItemList from './ItemList';
 import CartList from './Cart/CartList';
+import { IAppProps, AppContainerState } from './modules/AppContainer.module';
 
-function AppContainer(props: any): JSX.Element {
+const AppContainer: React.FC<IAppProps> = (props) => {
+    const items = props.items;
     return (
         <BrowserRouter>
             <div>
                 <Navigation
-                    items={props.items.items}
-                    totalQuantity={props.items.totalQuantity}
+                    items={items.items}
+                    totalQuantity={items.totalQuantity}
                 />
                 <Switch>
                     <Route exact path='/' component={ItemList} />
@@ -23,7 +25,7 @@ function AppContainer(props: any): JSX.Element {
     )
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppContainerState) => ({
     items: state.cart
 });
 

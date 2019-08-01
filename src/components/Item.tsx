@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IItemProps } from './modules/Item.module';
 
 const Container = styled.div`
     display: flex;
@@ -19,7 +20,7 @@ const AddBtn = styled.button`
     }
 `;
 
-export default (props: any): JSX.Element => {
+export default (props: IItemProps): JSX.Element => {
     const book = props.book;
     return (
         <Container>
