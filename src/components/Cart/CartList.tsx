@@ -7,10 +7,11 @@ import { IBooks } from '../../data/data';
 import { CartListProps } from './modules/CartList.module';
 import CartItem from './CartItem';
 
-const CartList: React.FC<CartListProps> = (props) => {
+const CartList: React.FC<CartListProps> = props => {
     const addedItems = getAddedItems().map((item: IBooks): JSX.Element => {
         return (
             <CartItem 
+                id={item.id}
                 key={item.id}
                 title={item.title}
                 rating={item.rating}
@@ -22,7 +23,7 @@ const CartList: React.FC<CartListProps> = (props) => {
 
     function getAddedItems() {
         let added: any = [];
-        let addedIds = Object.keys(props.id);
+        let addedIds = props.items;
         for (let id of addedIds) {
             let addedItemsArray = _.map(books, book => book.id === id ? book : undefined)
             let addedItem = _.without(addedItemsArray, undefined)

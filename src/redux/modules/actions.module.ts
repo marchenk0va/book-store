@@ -1,6 +1,6 @@
 export interface IActionsTypes {
     ADD_ITEM: string;
-    DELETE_ITEM: string;
+    REMOVE_ITEM: string;
 }
 
 export interface ICartAction {
@@ -10,5 +10,5 @@ export interface ICartAction {
 
 export interface ICartActions {
     addToCart(id: string): void;
-    deleteFromCart(id: string): void;
+    removeFromCart(id: string): void;
 }

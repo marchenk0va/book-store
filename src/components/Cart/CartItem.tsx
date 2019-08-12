@@ -2,8 +2,9 @@ import React from 'react';
 import '../../App.scss';
 import { connect } from 'react-redux';
 import { CartItemProps } from './modules/CartItem.module';
+import cartActions from '../../redux/actions';
 
-const CartItem: React.FC<CartItemProps> = (props) => {
+const CartItem: React.FC<CartItemProps> = props => {
     return (
         <div className='cart-item-container flex-row'>
             <div className='flex-row' style={{marginRight: '40px'}}>
@@ -19,14 +20,18 @@ const CartItem: React.FC<CartItemProps> = (props) => {
             <div>
                 <p>quantity x </p>
                 <h3>total price</h3>
-                <button>REMOVE</button>
+                <button onClick={() => props.removeFromCart(props.id)}>REMOVE</button>
             </div>
         </div>
     )
 };
 
 const mapStateToProps = (state: any) => ({
-    quantity: state.cart.quantityById
+    quantity: state.quantityById
 });
 
-export default connect(mapStateToProps, null)(CartItem);
+const mapDispatchToProps = (dispatch: any) => ({
+    removeFromCart: (id: string) => dispatch(cartActions.removeFromCart(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);

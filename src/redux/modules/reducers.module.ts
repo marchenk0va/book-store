@@ -1,7 +1,7 @@
 export interface ICartState {
     items: string[],
     totalQuantity: number,
-    quantityById: IQuantityById
+    quantityById: IQuantityById,
 }
 
 export interface IQuantityById {

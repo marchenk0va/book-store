@@ -2,7 +2,7 @@ import { IActionsTypes, ICartActions, ICartAction } from './modules/actions.modu
 
 export const actionTypes: IActionsTypes = {
     ADD_ITEM: 'ADD_ITEM',
-    DELETE_ITEM: 'DEELETE_ITEM',
+    REMOVE_ITEM: 'REMOVE_ITEM',
 }
 
 const cartActions: ICartActions = {
@@ -13,9 +13,9 @@ const cartActions: ICartActions = {
         }
     },
 
-    deleteFromCart(id: string): ICartAction {
+    removeFromCart(id: string): ICartAction {
         return {
-            type: actionTypes.DELETE_ITEM,
+            type: actionTypes.REMOVE_ITEM,
             id
         }
     },

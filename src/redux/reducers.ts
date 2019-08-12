@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { actionTypes } from './actions';
 import { ICartState } from './modules/reducers.module';
 import { ICartAction } from './modules/actions.module';
@@ -15,6 +16,13 @@ export const itemActions = (state = initialState, action: ICartAction): ICartSta
                 ...state,
                 items: [ ...state.items, action.id ],
                 totalQuantity: ++state.totalQuantity
+            }
+        case actionTypes.REMOVE_ITEM:
+            const updatedList = _.filter(state.items, (item: any, index: number) => item[index] !== action.id)
+            return {
+                ...state,
+                items: updatedList,
+                totalQuantity: --state.totalQuantity
             }
         default:
             return state
