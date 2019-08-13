@@ -8,11 +8,11 @@ import { CartListProps } from './modules/CartList.module';
 import CartItem from './CartItem';
 
 const CartList: React.FC<CartListProps> = props => {
-    const addedItems = getAddedItems().map((item: IBooks): JSX.Element => {
+    const addedItems = getAddedItems().map((item: IBooks, index: number): JSX.Element => {
         return (
             <CartItem 
                 id={item.id}
-                key={item.id}
+                key={index}
                 title={item.title}
                 rating={item.rating}
                 cost={item.cost}

@@ -1,10 +1,10 @@
 export type CartItemProps = {
     id: string,
-    key: string,
+    key: number,
     title: string,
     rating: number,
     cost: number,
     cover: string,
-    quantity: any,
     removeFromCart: (id: string) => void,
+    quantityOfItem: (id: string) => void,
 }

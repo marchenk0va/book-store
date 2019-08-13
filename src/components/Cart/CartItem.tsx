@@ -3,8 +3,10 @@ import '../../App.scss';
 import { connect } from 'react-redux';
 import { CartItemProps } from './modules/CartItem.module';
 import cartActions from '../../redux/actions';
+import { getQuantityOfItem } from '../../redux/reducers';
 
 const CartItem: React.FC<CartItemProps> = props => {
+    const quantity = props.quantityOfItem(props.id)
     return (
         <div className='cart-item-container flex-row'>
             <div className='flex-row' style={{marginRight: '40px'}}>
@@ -18,7 +20,7 @@ const CartItem: React.FC<CartItemProps> = props => {
                 </div>
             </div>
             <div>
-                <p>quantity x </p>
+                <p>quantity x {quantity}</p>
                 <h3>total price</h3>
                 <button onClick={() => props.removeFromCart(props.id)}>REMOVE</button>
             </div>
@@ -27,7 +29,7 @@ const CartItem: React.FC<CartItemProps> = props => {
 };
 
 const mapStateToProps = (state: any) => ({
-    quantity: state.quantityById
+    quantityOfItem: (id: string) => getQuantityOfItem(state, id),
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
