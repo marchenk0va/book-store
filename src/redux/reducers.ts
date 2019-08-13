@@ -19,11 +19,11 @@ export const itemActions = (state = initialState, action: ICartAction): ICartSta
             }
         case actionTypes.REMOVE_ITEM:
             const updatedList = _.filter(state.items, (item: any, index: number) => item[index] !== action.id)
-            return {
-                ...state,
-                items: updatedList,
-                totalQuantity: --state.totalQuantity
-            }
+                return {
+                    ...state,
+                    items: updatedList,
+                    totalQuantity: --state.totalQuantity
+                }
         default:
             return state
     }
@@ -37,12 +37,10 @@ export const quantityById = (state = initialState.quantityById, action: ICartAct
                 [action.id]: (state[action.id] || 0) + 1
             }
         case actionTypes.REMOVE_ITEM:
-        if (state[action.id] > 0) {
             return {
                 ...state,
                 [action.id]: state[action.id] - 1
             }
-        }
         default:
             return state
     }

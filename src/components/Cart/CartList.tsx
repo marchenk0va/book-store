@@ -3,12 +3,12 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import { books } from '../../data/data';
-import { IBooks } from '../../data/data';
 import { CartListProps } from './modules/CartList.module';
 import CartItem from './CartItem';
 
 const CartList: React.FC<CartListProps> = props => {
-    const addedItems = getAddedItems().map((item: IBooks, index: number): JSX.Element => {
+    const a = _.uniq(getAddedItems());
+    const addedItems = a.map((item: any, index: number): JSX.Element => {
         return (
             <CartItem 
                 id={item.id}
@@ -18,7 +18,7 @@ const CartList: React.FC<CartListProps> = props => {
                 cost={item.cost}
                 cover={item.cover}
             />
-        )
+        );
     });
 
     function getAddedItems() {
@@ -33,15 +33,16 @@ const CartList: React.FC<CartListProps> = props => {
     };
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', width: '40%',margin: '0px', padding: '5px'}}>
-            {addedItems}
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0px', padding: '5px'}}>
+            {
+                props.items.length > 0 ? addedItems : <p>YOUR CART IS EMPTY</p>
+            }
         </div>
-    )
+    );
 }
 
 const mapStateToProps = (state: any): Object => ({
     items: state.cart.items,
-    id: state.quantityById
 });
 
 export default connect(mapStateToProps, null)(CartList);
